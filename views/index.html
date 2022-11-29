@@ -1,0 +1,23 @@
+@{layout('')}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>OpenALPR HTTP Wrapper</h1>
+    <p>HTTP Posts to /detect require an "upload" and an optional "country_code" value.</p>
+    <h2>Upload an image for License Plate Recognition</h2>
+    <form action="/detect" method="POST" enctype="multipart/form-data">
+        <select name="countrycode">
+            <option value="us" selected="selected">USA</option>
+            <option value="eu">Europe</option>
+        </select>
+        <input type="file" name="upload">
+        <input type="submit" value="Detect">
+    </form> 
+</body>
+</html>
