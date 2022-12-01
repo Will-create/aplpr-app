@@ -6,7 +6,7 @@ exports.install = function() {
 function home() {
     var self = this;
 
-    this.view('index')
+    self.view('index')
 }
 
 

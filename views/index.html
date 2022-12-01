@@ -1,23 +1,49 @@
-@{layout('')}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>OpenALPR HTTP Wrapper</h1>
-    <p>HTTP Posts to /detect require an "upload" and an optional "country_code" value.</p>
-    <h2>Upload an image for License Plate Recognition</h2>
-    <form action="/detect" method="POST" enctype="multipart/form-data">
-        <select name="countrycode">
-            <option value="us" selected="selected">USA</option>
-            <option value="eu">Europe</option>
-        </select>
-        <input type="file" name="upload">
-        <input type="submit" value="Detect">
-    </form> 
-</body>
-</html>
+@{meta('File upload')}
+
+
+<div class="row">
+    <div style="background-color:#F0F0F0;padding:6px 20px">
+        <b style="color:black"></b>
+        <img src="" alt="" srcset="">
+    </div>
+    <div style="background-color: #F0F0F0;height:78vh;overflow:hidden;" class="col-md-4">
+        <div data-scope="form" class="row" >
+			<div class="col-md-12 m">
+				<div style="padding:50px;max-width:100%">
+					<div  data-bind="null__click:?/upload" class="dragdrop-container m exec">
+						<div class="dragdrop-over">
+                            <div data---="button__null__exec:clickme;icon:fa fa-cloud-upload" class="hidden">@(Upload Image)</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    </div>
+    <div style="background-color: #FFF" class="col-md-8 ">
+        <div class="row">
+            <div class="padding" style="height: 78vh;overflow-y:scroll" data---="objecttree__common.alpr">
+        </div>
+    </div>
+</div>
+<script>
+    PLUGIN('form', function(exports) {
+
+
+
+        exports.upload = function(el){
+            var opt = {};
+            opt.url = '/detect/';
+            opt.callback = function(response, err) {
+                SET('common.alpr', response);
+                SETTER('notifybar/success', 'Success');
+            };
+            opt.progress = function(percentage) {
+                console.log('Percentage : ', percentage);
+            };
+            SETTER('fileuploader/upload', opt);
+    }
+
+    });
+
+</script>

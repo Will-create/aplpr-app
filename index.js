@@ -1,1 +1,1 @@
-require('total4/debug')({ port:3000 });
+require('total4/debug')({ port:80 });
