@@ -13,4 +13,4 @@ $ npm install
 $ node index.js
 ```
 - Open app
-  Now you can open app `http:// `
+  Now you can open app `http://localhost:8000`
